@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { tempoParaSegundos } from '../../common/utils/time';
 import { ITarefa } from '../../types/tarefas/tarefa';
 import Button from '../Button';
@@ -20,7 +20,7 @@ export default function Cronometro({ selecionado, finalizarTarefa }: Props) {
     }, [selecionado])
 
     function regressiva(contador: number = 0) {
-        if(contador == 0) finalizarTarefa();
+        if(contador === 0) finalizarTarefa();
         setTimeout(() => {    
             if(contador > 0) { 
                 setTempo(contador - 1);

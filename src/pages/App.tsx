@@ -35,6 +35,8 @@ function App() {
     }
   }
 
+  console.log('Página criada'); //console apenas para mostrar a duplicidade da renderização
+
   return (
     <div className="AppStyle">
       <Form setTarefas={setTarefas}/>
