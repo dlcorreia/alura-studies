@@ -19,15 +19,28 @@ export default function Cronometro({ selecionado, finalizarTarefa }: Props) {
         }
     }, [selecionado])
 
-    function regressiva(contador: number = 0) {
+    function regressivaComSetTimeout(contador: number = 0) {
         if(contador === 0) finalizarTarefa();
         setTimeout(() => {    
             if(contador > 0) { 
                 setTempo(contador - 1);
-                return regressiva(contador - 1);
+                return regressivaComSetTimeout(contador - 1);
             }
-           //finalizarTarefa();
         }, 1000)
+    }
+
+    function regressivaComSetInterval(contador: number = 0) {
+        const timerId = setInterval(regressiva, 1000)
+
+        function regressiva() {
+            setTempo(contador - 1);
+            contador--;
+            if(contador === 0) {
+                finalizarTarefa();
+                clearInterval(timerId);
+                return;
+            };
+        }
     }
     
     return (
@@ -36,7 +49,7 @@ export default function Cronometro({ selecionado, finalizarTarefa }: Props) {
             <div className={style.relogioWrapper}>
                 <Clock tempo={tempo}/>
             </div>
-            <Button onClick={() => regressiva(tempo)} >
+            <Button onClick={() => regressivaComSetInterval(tempo)} >
                 Começar!
             </Button>
         </div>
