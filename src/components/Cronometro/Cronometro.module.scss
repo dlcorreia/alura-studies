@@ -31,6 +31,7 @@
       font-size: 1.25rem;
       padding: 16px;
       width: 150px;
+      // margin-left: 10px; //apenas para separar os botões
       
       &:active {
         background-color: #7CA6B7;
@@ -55,5 +56,12 @@
         width: 200px;
         font-size: 2.25rem;
       }
+    }
+
+// classes criadas para o botões de pausar e resetar
+    .boxBotoes {
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
     }
   }

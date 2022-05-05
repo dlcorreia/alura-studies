@@ -35,6 +35,23 @@ function App() {
     }
   }
 
+//não está funcionando corretamente se resetar durante a contagem, tem que parar a contagem
+  function limparTarefas() {
+    
+    console.log('limparTarefas foi chamada');
+    setTarefas(
+      tarefasAnteriores => 
+      tarefasAnteriores.map((tarefa, index) => {   
+        console.log('A tarefa ' + index + ' foi limpa!')     
+          return {
+            ...tarefa,
+            selecionado: false,
+            completado: false
+          }
+        
+      }));
+  }
+
   console.log('Página criada'); //console apenas para mostrar a duplicidade da renderização
 
   return (
@@ -47,6 +64,7 @@ function App() {
       <Cronometro 
         selecionado={selecionado}
         finalizarTarefa={finalizarTarefa}
+        limparTarefas={limparTarefas}
       />
     </div>
   );
